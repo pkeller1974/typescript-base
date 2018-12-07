@@ -5,6 +5,6 @@ import { HelloWorld } from './components/HelloWorld';
 
 ReactDOM.render(
     <HelloWorld compiler="Typescript" framework="ReactJS" />,
-    document.getElementById("root")
+    document.getElementById("app")
 );
 

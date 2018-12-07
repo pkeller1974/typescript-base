@@ -9,7 +9,10 @@ export interface IHelloWorldProps
 export class HelloWorld extends React.Component<IHelloWorldProps, {}> {
     render() {
         return (
-            <h1>{this.props.compiler} and {this.props.framework} </h1>
+            <React.Fragment>
+                <h1>{this.props.compiler} and {this.props.framework}</h1>
+                <p>This means that the config is working.</p>
+            </React.Fragment>
         )
     }
 }
