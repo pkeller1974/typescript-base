@@ -3,6 +3,11 @@
         "outDir": "./dist/",
         "sourceMap": true,
         "noImplicitAny": true,
+        "noImplicitThis" : true,
+        "strictFunctionTypes": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,        
         "module": "commonjs",
         "target": "esnext",
         "jsx": "react"

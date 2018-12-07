@@ -11,13 +11,16 @@ module.exports = {
     },
     stats: {
         children: false  
-      },
+    },   
     devServer: {
         port: 8080,
         contentBase: "./dist",
         hot: true,   
         index: "index.html",    
-        inline: true,        
+        inline: true,   
+        stats: {
+            children: false  
+          },     
     },
     devtool: "source-map",
     resolve: {
@@ -25,8 +28,18 @@ module.exports = {
     },
     module: {
         rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+
+            // TSLinter and loader
+            { test: /\.tsx?$/, enforce: 'pre',
+                use: [
+                    {
+                        loader: 'tslint-loader',                        
+                    },
+                    {
+                        loader: 'awesome-typescript-loader',
+                    }
+                ]
+            },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },

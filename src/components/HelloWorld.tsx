@@ -3,7 +3,7 @@ import * as React from 'react';
 export interface IHelloWorldProps 
 { 
     compiler: string,
-    framework: string,
+    framework: string
 }
 
 export class HelloWorld extends React.Component<IHelloWorldProps, {}> {
