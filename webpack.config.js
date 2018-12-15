@@ -6,7 +6,7 @@ module.exports = {
     mode: "development",
     entry: "./src/index.tsx",
     output: {
-        filename: "bundle.js",
+        filename: "[name].[hash].js",
         path: path.resolve("dist"),        
     },
     stats: {
@@ -25,7 +25,7 @@ module.exports = {
     devtool: "source-map",
     resolve: {
         extensions: [".ts",".tsx",".js",".json"]
-    },
+    },    
     module: {
         rules: [
             // TSLinter and loader
@@ -46,7 +46,7 @@ module.exports = {
             // index.html 
             {   test: /\.html$/, use: [ { loader: "html-loader", options: { minimize: true } } ] }
         ]
-    },
+    },   
     plugins: [
         new HtmlWebPackPlugin({
             template: "./src/index.html",
