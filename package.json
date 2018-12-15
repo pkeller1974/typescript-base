@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && webpack",
     "start": "npm run prettier:write && webpack-dev-server --mode development --open",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "analyse-bundle" : "npm run clean && webpack --env.ANALYSE_BUNDLES=yes"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "@types/react-dom": "^16.0.11",
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^4.6.0",
+    "cross-env": "^5.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.15.3",
@@ -36,6 +38,7 @@
     "tslint-loader": "^3.5.4",
     "typescript": "^3.2.2",
     "webpack": "^4.27.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
   },

@@ -1,16 +1,47 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = {
+const plugins = (env) => {
+    const allPlugins = ([
+        new HtmlWebPackPlugin({
+            template: "./src/index.html",
+            filename: "index.html"
+          }) ,
+        new webpack.HotModuleReplacementPlugin(),        
+    ]);
+
+    if (env && env.ANALYSE_BUNDLES) {
+        allPlugins.push(new BundleAnalyzerPlugin());
+    }
+    return allPlugins;
+}
+
+module.exports = env => {
+    return {
     mode: "development",
-    entry: "./src/index.tsx",
+    entry: { 
+        app: "./src/index.tsx",        
+    },
     output: {
         filename: "[name].[hash].js",
         path: path.resolve("dist"),        
     },
     stats: {
         children: false  
+    },
+    optimization: {
+        splitChunks: {
+          cacheGroups: {
+            node_vendors : {
+                test : /[\\/]node_modules[\\/]/,
+                chunks: 'all',
+                name: 'vendor',
+                priority: 1,
+            },                 
+          }
+        },
     },   
     devServer: {
         port: 8080,
@@ -47,11 +78,6 @@ module.exports = {
             {   test: /\.html$/, use: [ { loader: "html-loader", options: { minimize: true } } ] }
         ]
     },   
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "index.html"
-          }) ,
-        new webpack.HotModuleReplacementPlugin(),               
-    ]
+    plugins: plugins(env)
+}
 };
