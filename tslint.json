@@ -116,8 +116,7 @@
         ],
         // Config different from tslint:latest
         "no-implicit-dependencies": [
-            true,
-            "dev"
+            false
         ],
         "object-literal-key-quotes": [
             true,

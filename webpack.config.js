@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const plugins = (env) => {
     const allPlugins = ([
@@ -55,7 +56,10 @@ module.exports = env => {
     },
     devtool: "source-map",
     resolve: {
-        extensions: [".ts",".tsx",".js",".json"]
+        extensions: [".ts",".tsx",".js",".json"],
+        plugins: [
+            new TsConfigPathsPlugin()
+        ]
     },    
     module: {
         rules: [
