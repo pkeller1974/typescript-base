@@ -11,7 +11,7 @@
     "build": "npm run clean && webpack",
     "start": "npm run prettier:write && webpack-dev-server --mode development --open",
     "clean": "rimraf dist",
-    "analyse-bundle" : "npm run clean && webpack --env.ANALYSE_BUNDLES=yes"
+    "analyse-bundle": "npm run clean && webpack --env.ANALYSE_BUNDLES=yes"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.15.3",
     "rimraf": "^2.6.2",
+    "script-ext-html-webpack-plugin": "^2.1.3",
     "source-map-loader": "^0.2.4",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.5.4",

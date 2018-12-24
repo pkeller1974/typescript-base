@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ScriptExtHtmlWebPackPlugin = require("script-ext-html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -8,9 +9,13 @@ const plugins = (env) => {
     const allPlugins = ([
         new HtmlWebPackPlugin({
             template: "./src/index.html",
-            filename: "index.html"
-          }) ,
-        new webpack.HotModuleReplacementPlugin(),        
+            filename: "index.html",
+            inject: "head",
+          }),
+          new ScriptExtHtmlWebPackPlugin({
+            defaultAttribute: 'defer'
+          }),
+          new webpack.HotModuleReplacementPlugin(),        
     ]);
 
     if (env && env.ANALYSE_BUNDLES) {
