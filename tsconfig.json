@@ -13,7 +13,8 @@
         "jsx": "react",
         "baseUrl": "./",
         "paths" : {
-            "@components/*" : ["src/components/*"]
+            "@components/*" : ["src/components/*"],
+            "@app/*" : ["src/*"],
         }
     },
     "include": [

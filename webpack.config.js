@@ -15,7 +15,10 @@ const plugins = (env) => {
           new ScriptExtHtmlWebPackPlugin({
             defaultAttribute: 'defer'
           }),
-          new webpack.HotModuleReplacementPlugin(),        
+          new webpack.DefinePlugin({                        
+            _DEFAULT_GREETING: JSON.stringify("This is a sample project constant."),
+        }),
+        new webpack.HotModuleReplacementPlugin(),        
     ]);
 
     if (env && env.ANALYSE_BUNDLES) {
