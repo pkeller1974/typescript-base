@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebPackPlugin = require("script-ext-html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -7,20 +8,30 @@ const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const plugins = (env) => {
     const allPlugins = ([
+
+        // Copies the index.html template and tells it where to inject the script tags 
         new HtmlWebPackPlugin({
             template: "./src/index.html",
             filename: "index.html",
             inject: "head",
           }),
+          // This will defer the script until the page has been loaded, extension of HtmlWebPackPlugin
           new ScriptExtHtmlWebPackPlugin({
             defaultAttribute: 'defer'
           }),
+          // We can define constants here 
           new webpack.DefinePlugin({                        
             _DEFAULT_GREETING: JSON.stringify("This is a sample project constant."),
         }),
-        new webpack.HotModuleReplacementPlugin(),        
+        // HMR
+        new webpack.HotModuleReplacementPlugin(),
+        // Copy any static resources required to the dist folder  
+        new CopyWebpackPlugin([
+            { from: "src/images", to: "images" }
+        ]),       
     ]);
 
+    // If we are not doing any analysis on the bundle then we don't need this. 
     if (env && env.ANALYSE_BUNDLES) {
         allPlugins.push(new BundleAnalyzerPlugin());
     }
