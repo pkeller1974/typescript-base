@@ -102,11 +102,11 @@ module.exports = env => {
 
             // css-loader turns the css into a string and the style loader put the style tag in the page. Styles will be included in the bundle,
             // this is not efficient as they could be loaded async while the page is loading. Use extract-text-plugin to extract it out. 
-            { test: /\.css$/, use: [ {loader: "style-loader"}, {loader: "css-loader" }] },
+            { test: /\.css$/, use: [ { loader: "style-loader" }, { loader: "css-loader" }] },
 
             // File loader will process png, gif and jpegs and output them to the dist folder 
             { test: /\.(png|jpg|gif)$/, use: [ { loader: "file-loader"} ] },
-            
+
             // typings-for-css-loader enabled type generation for style sheets, NOTE: Breaking changes after 1.0.0 on css-loader
 
             //{ test: /\.css$/, use: [ { loader: "style-loader" }, { loader: "typings-for-css-modules-loader", options: { modules: true, namedExport: true, camelCase: true } } ] }            
