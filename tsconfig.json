@@ -11,6 +11,7 @@
         "module": "commonjs",
         "target": "esnext",
         "jsx": "react",
+        "experimentalDecorators": true,
         "baseUrl": "./",
         "paths" : {
             "@components/*" : ["src/components/*"],
