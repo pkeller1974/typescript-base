@@ -57,7 +57,7 @@
         "interface-over-type-literal": true,
         "jsdoc-format": true,
         "linebreak-style": [
-            true,
+            false,
             "CRLF"
         ],
         "no-inferrable-types": true,
